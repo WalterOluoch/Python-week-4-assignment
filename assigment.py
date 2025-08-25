@@ -17,10 +17,10 @@ def main():
         with open(input_filename, 'r') as infile:
             lines = infile.readlines()
     except FileNotFoundError:
-        print(f"❌ Error: The file '{input_filename}' does not exist.")
+        print(f" Error: The file '{input_filename}' does not exist.")
         return
     except IOError:
-        print(f"❌ Error: The file '{input_filename}' could not be read.")
+        print(f" Error: The file '{input_filename}' could not be read.")
         return
 
     output_filename = "enhanced_neuroanatomy_notes.txt"
@@ -29,9 +29,9 @@ def main():
             for line in lines:
                 modified_line = add_neuroanatomy_fact(line)
                 outfile.write(modified_line)
-        print(f"✅ Success! Modified notes saved to '{output_filename}'.")
+        print(f" Success! Modified notes saved to '{output_filename}'.")
     except IOError:
-        print(f"❌ Error: Could not write to '{output_filename}'.")
+        print(f" Error: Could not write to '{output_filename}'.")
 
 if __name__ == "__main__":
     main()
