@@ -1,37 +1,25 @@
-def add_neuroanatomy_fact(line):
-    # Simple enrichment: add a neuroanatomy fact to each line
-    facts = [
-        "The hippocampus is crucial for memory formation.",
-        "The cerebellum coordinates voluntary movements.",
-        "The amygdala processes emotions like fear and pleasure.",
-        "The corpus callosum connects the brain's two hemispheres.",
-        "The prefrontal cortex is key to decision-making and personality."
-    ]
-    import random
-    return f"{line.strip()} — Fact: {random.choice(facts)}\n"
 
-def main():
-    input_filename = input("Enter the filename containing neuroanatomy notes: ")
 
-    try:
-        with open(input_filename, 'r') as infile:
-            lines = infile.readlines()
-    except FileNotFoundError:
-        print(f" Error: The file '{input_filename}' does not exist.")
-        return
-    except IOError:
-        print(f" Error: The file '{input_filename}' could not be read.")
-        return
+filename = input("Enter the file name .i.e file.txt :")
 
-    output_filename = "enhanced_neuroanatomy_notes.txt"
-    try:
-        with open(output_filename, 'w') as outfile:
-            for line in lines:
-                modified_line = add_neuroanatomy_fact(line)
-                outfile.write(modified_line)
-        print(f" Success! Modified notes saved to '{output_filename}'.")
-    except IOError:
-        print(f" Error: Could not write to '{output_filename}'.")
+try:
+    # Open the file for reading
+    infile = open(filename, "r")
+    content = infile.read()
+    infile.close()
 
-if __name__ == "__main__":
-    main()
+    # Modify the content (make everything uppercase)
+    modified_content = content.upper()
+
+    # Save into a new file
+    new_filename = "modified_" + filename
+    outfile = open(new_filename, "w")
+    outfile.write(modified_content)
+    outfile.close()
+
+    print("File processed successfully! Saved as:", new_filename)
+
+except FileNotFoundError:
+    print("Error: File not found.")
+except Exception as e:
+    print("Error:", e)
